@@ -7,7 +7,7 @@ $mpdf = new \Mpdf\Mpdf();
 ob_start();
 
 // This is where your script would normally output the HTML using echo or print
-echo '<div>Generate your content</div>';
+echo '<div>Generate your content  test</div>';
 
 // Now collect the output buffer into a variable
 $html = ob_get_contents();
