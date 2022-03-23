@@ -6,13 +6,12 @@ require_once __DIR__ . '/vendor/autoload.php';
 $product = $_POST['product'];
 $product_id = $_POST['product_id'];
 $rate = $_POST['rate'];
-$mpdf = new \Mpdf\Mpdf();
+
 
 ob_start();
 
 
 		for($i=1;$i<=$_POST['print_qty'];$i++){
-			
 			$html .= '<table>';
 			$html .= '<tr>';
 			$html .= '<th></th>';
@@ -25,8 +24,15 @@ ob_start();
 						</p><p style="text-indent: 20; font-size: 10px;">'.$product.'  '.$product_id.'</p>
 						</p><p style="text-indent: 20; font-size: 10px;">'.$product.'  '.$product_id.'</p>
 						</p><p style="text-indent: 20; font-size: 10px;">'.$product.'  '.$product_id.'</p>
+						</p><p style="text-indent: 20; font-size: 10px;">'.$product.'  '.$product_id.'</p>
+						</p><p style="text-indent: 20; font-size: 10px;">'.$product.'  '.$product_id.'</p>
+						</p><p style="text-indent: 20; font-size: 10px;">'.$product.'  '.$product_id.'</p>
+						</p><p style="text-indent: 20; font-size: 10px;">'.$product.'  '.$product_id.'</p>
+						</p><p style="text-indent: 20; font-size: 10px;">'.$product.'  '.$product_id.'</p>
 						</td>';
+			
 			$html .= '</tr>';
+		
 			$html .= '</table>';
 			// $html .= "<p class='inline'><span ><b>Item: $product</b></span>".bar128(stripcslashes($_POST['product_id']))."<span ><b>Price: ".$rate." </b><span></p>&nbsp&nbsp&nbsp&nbsp";
 		}
@@ -42,8 +48,12 @@ ob_start();
 // $html .=' <div class="barcodecell"><barcode code="'.$id_barcode.'" type="QR" class="barcode" size="0.8" error="M" disableborder="1" /></div>';
 
 try {
-
+	$mpdf = new \Mpdf\Mpdf(
+		['mode' => 'utf-8', 'format' => [100, 67]]
+		
+		);
 	$mpdf->WriteHTML($html);
+	// $mpdf ->SetAutoPageBreak(true,60);
 
 } catch (\Mpdf\MpdfException $e) {
 
@@ -73,7 +83,7 @@ span { font-size: 13px;}
         margin: 0mm;  /* this affects the margin in the printer settings */
 
     }
-</style>
+</style=>
 </head>
 <body onload="window.print();">
 	<div style="margin-left: 5%">
