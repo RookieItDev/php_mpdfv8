@@ -1,6 +1,4 @@
 <?php
-
-
 use Mpdf\QrCode\QrCode;
 
 require_once __DIR__ . '/vendor/autoload.php';
@@ -50,16 +48,16 @@ ob_start();
 
 try {
 
-	$defaultConfig = (new Mpdf\Config\ConfigVariables())->getDefaults();
+$defaultConfig = (new Mpdf\Config\ConfigVariables())->getDefaults();
 $fontDirs = $defaultConfig['fontDir'];
 
 $defaultFontConfig = (new Mpdf\Config\FontVariables())->getDefaults();
 $fontData = $defaultFontConfig['fontdata'];
 
-$mpdf = new \Mpdf\Mpdf(	['mode' => 'utf-8', 'format' => [100, 67],
-[
+$mpdf = new \Mpdf\Mpdf(	[
+
     'fontDir' => array_merge($fontDirs, [
-        __DIR__ . '/tmp',
+        __DIR__ . '/custom/font/directory',
     ]),
     'fontdata' => $fontData + [
         'sarabun' => [
@@ -69,8 +67,8 @@ $mpdf = new \Mpdf\Mpdf(	['mode' => 'utf-8', 'format' => [100, 67],
             'BI' => 'THSarabunNew Bold.ttf',
         ]
     ],
-    'default_font' => 'sarabun'
-]
+    'default_font' => 'sarabun','mode' => 'UTF-8', 'format' => [100, 67]
+
 ]);
 	// $mpdf = new \Mpdf\Mpdf(
 	// 	['mode' => 'utf-8', 'format' => [100, 67]
@@ -111,24 +109,6 @@ span { font-size: 13px;}
         margin: 0mm;  /* this affects the margin in the printer settings */
 
     }
-</style=>
-</head>
-<body onload="window.print();">
-	<div style="margin-left: 5%">
-		<?php
 
-		// include 'barcode128.php';
-		// $product = $_POST['product'];
-		// $product_id = $_POST['product_id'];
-		// $rate = $_POST['rate'];
-
-		// for($i=1;$i<=$_POST['print_qty'];$i++){
-		// 	echo "<p class='inline'><span ><b>Item: $product</b></span>".bar128(stripcslashes($_POST['product_id']))."<span ><b>Price: ".$rate." </b><span></p>&nbsp&nbsp&nbsp&nbsp";
-		// }
-
-		?>
-	</div>
-</body>
-</html> -->
 
 
